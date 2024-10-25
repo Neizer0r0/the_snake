@@ -49,6 +49,7 @@ class GameObject:
         self.body_color = None
 
     def draw(self):
+        '''Метод отрисовки родительского класса'''
         pass
 
 
@@ -62,7 +63,6 @@ class Apple(GameObject):
 
     def randomize_position(self):
         """Метод создания рандомных координат для яблока на игровом поле"""
-
         self.position = (
             randint(0, ((SCREEN_WIDTH - 1) // 20)) * GRID_SIZE,
             randint(0, ((SCREEN_HEIGHT - 1) // 20)) * GRID_SIZE
@@ -73,7 +73,6 @@ class Apple(GameObject):
 
     def draw(self):
         """Метод отрисовки яблока"""
-
         rect = pg.Rect(self.position, (GRID_SIZE, GRID_SIZE))
         pg.draw.rect(screen, self.body_color, rect)
         pg.draw.rect(screen, BORDER_COLOR, rect, 1)
@@ -99,7 +98,6 @@ class Snake(GameObject):
 
     def move(self):
         """Метод определения движения и увеличения змейки"""
-
         now_position = self.get_head_position()
         if self.direction == RIGHT:
             if now_position[0] > SCREEN_WIDTH:
@@ -151,7 +149,6 @@ class Snake(GameObject):
 
     def draw(self):
         """Метод отрисовки змейки на игровом поле"""
-
         for position in self.positions[:-1]:
             rect = pg.Rect(position, (GRID_SIZE, GRID_SIZE))
             pg.draw.rect(screen, self.body_color, rect)
@@ -168,12 +165,10 @@ class Snake(GameObject):
 
     def get_head_position(self):
         """Метод получения координат головы змейки"""
-
         return self.positions[0]
 
     def reset(self):
         """Метод сбрасывания змейки в начальное состояние"""
-
         self.length = 1
         while self.positions:
             self.positions.pop()
@@ -183,7 +178,6 @@ class Snake(GameObject):
 
 def handle_keys(game_object):
     """Метод считывания и обработки ввода пользователя"""
-
     for event in pg.event.get():
         if event.type == pg.QUIT:
             pg.quit()
@@ -201,7 +195,6 @@ def handle_keys(game_object):
 
 def main():
     """Инициализация игры"""
-
     pg.init()
 
     apple = Apple()
