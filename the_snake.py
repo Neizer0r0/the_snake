@@ -49,7 +49,7 @@ class GameObject:
         self.body_color = None
 
     def draw(self):
-        '''Метод отрисовки родительского класса'''
+        """Метод отрисовки родительского класса"""
         pass
 
 
