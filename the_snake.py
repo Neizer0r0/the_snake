@@ -46,14 +46,11 @@ class GameObject:
     """Родительский класс для Змейки и Яблока"""
 
     def __init__(self, body_color=None):
-        self.position = ((SCREEN_WIDTH // 2), (SCREEN_HEIGHT // 2))
+        self.position = (SCREEN_WIDTH // 2), (SCREEN_HEIGHT // 2)
         self.body_color = body_color
 
     def draw(self):
         """Метод отрисовки родительского класса"""
-        # rect = pg.Rect(self.positions[0], (GRID_SIZE, GRID_SIZE))
-        # pg.draw.rect(screen, self.body_color, rect)
-        # pg.draw.rect(screen, BORDER_COLOR, rect, 1)
 
     def draw_first_coordinate(self):
         """Отрисовка первой координаты для яблока и змеи"""
@@ -67,7 +64,6 @@ class Apple(GameObject):
 
     def __init__(self, busy_positions=(), body_color=APPLE_COLOR):
         super().__init__(body_color)
-        self.position = None
         self.randomize_position(busy_positions)
 
     def randomize_position(self, busy_positions):
@@ -115,9 +111,6 @@ class Snake(GameObject):
 
     def draw(self):
         """Метод отрисовки змейки на игровом поле"""
-        rect = pg.Rect(self.positions[0], (GRID_SIZE, GRID_SIZE))
-        pg.draw.rect(screen, self.body_color, rect)
-        pg.draw.rect(screen, BORDER_COLOR, rect, 1)
         self.draw_first_coordinate()
         # Затирание последнего сегмента
         if self.last:
@@ -132,7 +125,7 @@ class Snake(GameObject):
         """Метод сбрасывания змейки в начальное состояние"""
         self.length = 1
         self.position = ((SCREEN_WIDTH // 2), (SCREEN_HEIGHT // 2))
-        self.positions = [(self.position)]
+        self.positions = [self.position]
         self.direction = choice(list_direction)
         self.last = None
 
